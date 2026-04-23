@@ -11,14 +11,16 @@ pipelines:
           - export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
           - export ARM_USE_OIDC=true
           - export TF_TOKEN_app_terraform_io=$TF_API_TOKEN
+          - export TF_VARS_FILE=${TF_VARS_FILE:-environments/dev.tfvars}
+          - test -f "$TF_VARS_FILE" || (echo "Missing tfvars file: $TF_VARS_FILE" && exit 1)
           - terraform init
           - terraform validate
-          - terraform plan -var-file="config/deploy.inputs.json"
+          - terraform plan -var-file="$TF_VARS_FILE"
 
   branches:
     main:
       - step:
-          name: Terraform Plan & Apply (Production)
+          name: Terraform Plan & Apply
           oidc: true
           deployment: production
           script:
@@ -27,7 +29,9 @@ pipelines:
             - export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
             - export ARM_USE_OIDC=true
             - export TF_TOKEN_app_terraform_io=$TF_API_TOKEN
+            - export TF_VARS_FILE=${TF_VARS_FILE:-environments/dev.tfvars}
+            - test -f "$TF_VARS_FILE" || (echo "Missing tfvars file: $TF_VARS_FILE" && exit 1)
             - terraform init
             - terraform validate
-            - terraform plan -var-file="config/deploy.inputs.json" -out=tfplan
+            - terraform plan -var-file="$TF_VARS_FILE" -out=tfplan
             - terraform apply tfplan
