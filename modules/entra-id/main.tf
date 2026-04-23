@@ -19,27 +19,6 @@ resource "azuread_group" "platform_admins" {
   security_enabled = true
 }
 
-resource "azuread_group" "developers" {
-  description      = "Application developers — contributor access to workload subscriptions."
-  display_name     = "grp-ofbank-${var.environment}-developers"
-  mail_enabled     = false
-  security_enabled = true
-}
-
-resource "azuread_group" "read_only" {
-  description      = "Read-only access to Azure resources for auditors and reviewers."
-  display_name     = "grp-ofbank-${var.environment}-read-only"
-  mail_enabled     = false
-  security_enabled = true
-}
-
-resource "azuread_group" "network_admins" {
-  description      = "Network administrators — manage networking resources."
-  display_name     = "grp-ofbank-${var.environment}-network-admins"
-  mail_enabled     = false
-  security_enabled = true
-}
-
 # -------------------------------------------------------
 # Terraform Service Principal (used by CI/CD pipelines)
 # -------------------------------------------------------

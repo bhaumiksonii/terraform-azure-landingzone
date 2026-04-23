@@ -1,0 +1,441 @@
+module.landing_zone.data.azurerm_client_config.current: Reading...
+module.landing_zone.data.azurerm_client_config.current: Read complete after 0s [id=Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9MDA2Y2I0MWEtYTAyNS00ZjJkLTk1YzQtZDFlNzdiOWIxODc3O3N1YnNjcmlwdGlvbklkPWFmNWZlNzcwLTA4OGItNGVjNi1iYzI1LTk0ZmM2NzRkNjM0Zjt0ZW5hbnRJZD0yNmZjNTdkNC1lOTljLTQwMzEtOWQ5NC05YTUyNDY1M2VmYWQ=]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.entra_id.azuread_application.terraform will be created
+  + resource "azuread_application" "terraform" {
+      + app_role_ids                = (known after apply)
+      + client_id                   = (known after apply)
+      + disabled_by_microsoft       = (known after apply)
+      + display_name                = "sp-ofbank-dev-terraform"
+      + id                          = (known after apply)
+      + logo_url                    = (known after apply)
+      + oauth2_permission_scope_ids = (known after apply)
+      + object_id                   = (known after apply)
+      + prevent_duplicate_names     = false
+      + publisher_domain            = (known after apply)
+      + sign_in_audience            = "AzureADMyOrg"
+      + tags                        = (known after apply)
+      + template_id                 = (known after apply)
+
+      + feature_tags (known after apply)
+    }
+
+  # module.entra_id.azuread_application_federated_identity_credential.bitbucket will be created
+  + resource "azuread_application_federated_identity_credential" "bitbucket" {
+      + application_id = (known after apply)
+      + audiences      = [
+          + "api://AzureADTokenExchange",
+        ]
+      + credential_id  = (known after apply)
+      + description    = "Bitbucket Pipelines OIDC federated credential"
+      + display_name   = "bitbucket-oidc-dev"
+      + id             = (known after apply)
+      + issuer         = "https://api.bitbucket.org/2.0/workspaces/ofbank/pipelines-config/identity/oidc"
+      + subject        = "ofbank:dev:*"
+    }
+
+  # module.entra_id.azuread_group.platform_admins will be created
+  + resource "azuread_group" "platform_admins" {
+      + auto_subscribe_new_members     = (known after apply)
+      + description                    = "Platform administrators — full access to Azure platform resources."
+      + display_name                   = "grp-ofbank-dev-platform-admins"
+      + external_senders_allowed       = (known after apply)
+      + hide_from_address_lists        = (known after apply)
+      + hide_from_outlook_clients      = (known after apply)
+      + id                             = (known after apply)
+      + mail                           = (known after apply)
+      + mail_enabled                   = false
+      + mail_nickname                  = (known after apply)
+      + members                        = (known after apply)
+      + object_id                      = (known after apply)
+      + onpremises_domain_name         = (known after apply)
+      + onpremises_group_type          = (known after apply)
+      + onpremises_netbios_name        = (known after apply)
+      + onpremises_sam_account_name    = (known after apply)
+      + onpremises_security_identifier = (known after apply)
+      + onpremises_sync_enabled        = (known after apply)
+      + owners                         = (known after apply)
+      + preferred_language             = (known after apply)
+      + prevent_duplicate_names        = false
+      + proxy_addresses                = (known after apply)
+      + security_enabled               = true
+      + visibility                     = (known after apply)
+      + writeback_enabled              = false
+    }
+
+  # module.entra_id.azuread_service_principal.terraform will be created
+  + resource "azuread_service_principal" "terraform" {
+      + account_enabled             = true
+      + app_role_ids                = (known after apply)
+      + app_roles                   = (known after apply)
+      + application_tenant_id       = (known after apply)
+      + client_id                   = (known after apply)
+      + display_name                = (known after apply)
+      + homepage_url                = (known after apply)
+      + id                          = (known after apply)
+      + logout_url                  = (known after apply)
+      + oauth2_permission_scope_ids = (known after apply)
+      + oauth2_permission_scopes    = (known after apply)
+      + object_id                   = (known after apply)
+      + redirect_uris               = (known after apply)
+      + saml_metadata_url           = (known after apply)
+      + service_principal_names     = (known after apply)
+      + sign_in_audience            = (known after apply)
+      + tags                        = (known after apply)
+      + type                        = (known after apply)
+
+      + feature_tags (known after apply)
+
+      + features (known after apply)
+    }
+
+  # module.landing_zone.azurerm_bastion_host.main will be created
+  + resource "azurerm_bastion_host" "main" {
+      + copy_paste_enabled        = true
+      + dns_name                  = (known after apply)
+      + file_copy_enabled         = false
+      + id                        = (known after apply)
+      + ip_connect_enabled        = false
+      + kerberos_enabled          = false
+      + location                  = "australiaeast"
+      + name                      = "ofbank-dev-bastion"
+      + private_only_enabled      = (known after apply)
+      + resource_group_name       = "ofbank-dev-rg-networking"
+      + scale_units               = 2
+      + session_recording_enabled = false
+      + shareable_link_enabled    = false
+      + sku                       = "Basic"
+      + tags                      = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+      + tunneling_enabled         = false
+
+      + ip_configuration {
+          + name                 = "ipconfig"
+          + public_ip_address_id = (known after apply)
+          + subnet_id            = (known after apply)
+        }
+    }
+
+  # module.landing_zone.azurerm_key_vault.main will be created
+  + resource "azurerm_key_vault" "main" {
+      + access_policy                 = (known after apply)
+      + enable_rbac_authorization     = (known after apply)
+      + id                            = (known after apply)
+      + location                      = "australiaeast"
+      + name                          = "ofbank-dev-kv"
+      + public_network_access_enabled = true
+      + purge_protection_enabled      = true
+      + rbac_authorization_enabled    = (known after apply)
+      + resource_group_name           = "ofbank-dev-rg-security"
+      + sku_name                      = "standard"
+      + soft_delete_retention_days    = 90
+      + tags                          = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+      + tenant_id                     = "26fc57d4-e99c-4031-9d94-9a524653efad"
+      + vault_uri                     = (known after apply)
+
+      + contact (known after apply)
+
+      + network_acls {
+          + bypass         = "AzureServices"
+          + default_action = "Deny"
+        }
+    }
+
+  # module.landing_zone.azurerm_log_analytics_workspace.main will be created
+  + resource "azurerm_log_analytics_workspace" "main" {
+      + allow_resource_only_permissions = true
+      + daily_quota_gb                  = -1
+      + id                              = (known after apply)
+      + internet_ingestion_enabled      = true
+      + internet_query_enabled          = true
+      + local_authentication_disabled   = (known after apply)
+      + local_authentication_enabled    = true
+      + location                        = "australiaeast"
+      + name                            = "ofbank-dev-law"
+      + primary_shared_key              = (sensitive value)
+      + resource_group_name             = "ofbank-dev-rg-shared-services"
+      + retention_in_days               = 30
+      + secondary_shared_key            = (sensitive value)
+      + sku                             = "PerGB2018"
+      + tags                            = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+      + workspace_id                    = (known after apply)
+    }
+
+  # module.landing_zone.azurerm_network_security_group.shared_services will be created
+  + resource "azurerm_network_security_group" "shared_services" {
+      + id                  = (known after apply)
+      + location            = "australiaeast"
+      + name                = "ofbank-dev-nsg-shared-services"
+      + resource_group_name = "ofbank-dev-rg-networking"
+      + security_rule       = [
+          + {
+              + access                                     = "Deny"
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "DenyAllInbound"
+              + priority                                   = 4096
+              + protocol                                   = "*"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + tags                = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+    }
+
+  # module.landing_zone.azurerm_public_ip.bastion will be created
+  + resource "azurerm_public_ip" "bastion" {
+      + allocation_method       = "Static"
+      + ddos_protection_mode    = "VirtualNetworkInherited"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "australiaeast"
+      + name                    = "ofbank-dev-pip-bastion"
+      + resource_group_name     = "ofbank-dev-rg-networking"
+      + sku                     = "Standard"
+      + sku_tier                = "Regional"
+      + tags                    = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+    }
+
+  # module.landing_zone.azurerm_resource_group.networking will be created
+  + resource "azurerm_resource_group" "networking" {
+      + id       = (known after apply)
+      + location = "australiaeast"
+      + name     = "ofbank-dev-rg-networking"
+      + tags     = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+    }
+
+  # module.landing_zone.azurerm_resource_group.security will be created
+  + resource "azurerm_resource_group" "security" {
+      + id       = (known after apply)
+      + location = "australiaeast"
+      + name     = "ofbank-dev-rg-security"
+      + tags     = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+    }
+
+  # module.landing_zone.azurerm_resource_group.shared_services will be created
+  + resource "azurerm_resource_group" "shared_services" {
+      + id       = (known after apply)
+      + location = "australiaeast"
+      + name     = "ofbank-dev-rg-shared-services"
+      + tags     = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["AppServices"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "AppServices"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["ContainerRegistry"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "ContainerRegistry"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["Containers"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "Containers"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["KeyVaults"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "KeyVaults"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["KubernetesService"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "KubernetesService"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["SqlServers"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "SqlServers"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["StorageAccounts"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "StorageAccounts"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_security_center_subscription_pricing.defender_plans["VirtualMachines"] will be created
+  + resource "azurerm_security_center_subscription_pricing" "defender_plans" {
+      + id            = (known after apply)
+      + resource_type = "VirtualMachines"
+      + tier          = "Standard"
+    }
+
+  # module.landing_zone.azurerm_subnet.bastion will be created
+  + resource "azurerm_subnet" "bastion" {
+      + address_prefixes                              = [
+          + "10.10.1.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "AzureBastionSubnet"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "ofbank-dev-rg-networking"
+      + virtual_network_name                          = "ofbank-dev-vnet-hub"
+    }
+
+  # module.landing_zone.azurerm_subnet.firewall will be created
+  + resource "azurerm_subnet" "firewall" {
+      + address_prefixes                              = [
+          + "10.10.0.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "AzureFirewallSubnet"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "ofbank-dev-rg-networking"
+      + virtual_network_name                          = "ofbank-dev-vnet-hub"
+    }
+
+  # module.landing_zone.azurerm_subnet.gateway will be created
+  + resource "azurerm_subnet" "gateway" {
+      + address_prefixes                              = [
+          + "10.10.2.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "GatewaySubnet"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "ofbank-dev-rg-networking"
+      + virtual_network_name                          = "ofbank-dev-vnet-hub"
+    }
+
+  # module.landing_zone.azurerm_subnet.shared_services will be created
+  + resource "azurerm_subnet" "shared_services" {
+      + address_prefixes                              = [
+          + "10.10.10.0/24",
+        ]
+      + default_outbound_access_enabled               = true
+      + id                                            = (known after apply)
+      + name                                          = "snet-shared-services"
+      + private_endpoint_network_policies             = "Disabled"
+      + private_link_service_network_policies_enabled = true
+      + resource_group_name                           = "ofbank-dev-rg-networking"
+      + virtual_network_name                          = "ofbank-dev-vnet-hub"
+    }
+
+  # module.landing_zone.azurerm_subnet_network_security_group_association.shared_services will be created
+  + resource "azurerm_subnet_network_security_group_association" "shared_services" {
+      + id                        = (known after apply)
+      + network_security_group_id = (known after apply)
+      + subnet_id                 = (known after apply)
+    }
+
+  # module.landing_zone.azurerm_virtual_network.hub will be created
+  + resource "azurerm_virtual_network" "hub" {
+      + address_space                  = [
+          + "10.10.0.0/16",
+        ]
+      + dns_servers                    = (known after apply)
+      + guid                           = (known after apply)
+      + id                             = (known after apply)
+      + location                       = "australiaeast"
+      + name                           = "ofbank-dev-vnet-hub"
+      + private_endpoint_vnet_policies = "Disabled"
+      + resource_group_name            = "ofbank-dev-rg-networking"
+      + subnet                         = (known after apply)
+      + tags                           = {
+          + "cost_centre" = "ofbank-dev-platform"
+          + "environment" = "dev"
+          + "managed_by"  = "terraform"
+          + "project"     = "ofbank-azure-foundation"
+          + "repository"  = "terraform-azure-landingzone"
+        }
+    }
+
+Plan: 26 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + hub_vnet_id                = (known after apply)
+  + key_vault_id               = (known after apply)
+  + log_analytics_workspace_id = (known after apply)
+  + platform_admin_group_id    = (known after apply)
+  + subscription_id            = "af5fe770-088b-4ec6-bc25-94fc674d634f"
+  + terraform_sp_client_id     = (known after apply)
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
