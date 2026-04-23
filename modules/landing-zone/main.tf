@@ -1,6 +1,14 @@
 # Landing Zone module
 # Hub networking, Key Vault, Log Analytics, Azure Policy, RBAC
 
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+    }
+  }
+}
+
 # -------------------------------------------------------
 # Resource Groups
 # -------------------------------------------------------
@@ -162,6 +170,6 @@ resource "azurerm_security_center_subscription_pricing" "defender_plans" {
     "VirtualMachines",
   ])
 
-  pricing_tier  = "Standard"
+  tier          = "Standard"
   resource_type = each.value
 }

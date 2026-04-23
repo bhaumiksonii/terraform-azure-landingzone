@@ -1,6 +1,14 @@
 # Entra ID module
 # Security groups, Terraform Service Principal, role assignments
 
+terraform {
+  required_providers {
+    azuread = {
+      source = "hashicorp/azuread"
+    }
+  }
+}
+
 # -------------------------------------------------------
 # Security Groups
 # -------------------------------------------------------

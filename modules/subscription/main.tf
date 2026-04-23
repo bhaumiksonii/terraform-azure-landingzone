@@ -1,6 +1,17 @@
 # Subscription module
 # Provisions an Azure Subscription via alias (EA / MCA billing)
 
+terraform {
+  required_providers {
+    azapi = {
+      source = "azure/azapi"
+    }
+    azurerm = {
+      source = "hashicorp/azurerm"
+    }
+  }
+}
+
 resource "azapi_resource" "subscription_alias" {
   type      = "Microsoft.Subscription/aliases@2021-10-01"
   name      = var.subscription_alias
