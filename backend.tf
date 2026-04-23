@@ -1,9 +1,11 @@
 terraform {
-  cloud {
-    organization = "<HCP_TERRAFORM_ORG>" # Replace with your HCP Terraform organisation name
-
-    workspaces {
-      name = "terraform-azure-landingzone" # Replace with actual repo / workspace name
-    }
+  backend "azurerm" {
+    resource_group_name  = "ofbank-dev-rg-shared-services"
+    storage_account_name = "ofbankdevstate"
+    container_name       = "tfstate"
+    key                  = "dev.tfstate"
   }
 }
+
+# Note: Storage account must be created first.
+# After initial deploy, run: terraform init -reconfigure
