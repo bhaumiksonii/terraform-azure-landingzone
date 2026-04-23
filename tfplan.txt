@@ -7,6 +7,19 @@ plan. Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
+  # azurerm_role_assignment.platform_admins_contributor will be created
+  + resource "azurerm_role_assignment" "platform_admins_contributor" {
+      + condition_version                = (known after apply)
+      + id                               = (known after apply)
+      + name                             = (known after apply)
+      + principal_id                     = (known after apply)
+      + principal_type                   = "Group"
+      + role_definition_id               = (known after apply)
+      + role_definition_name             = "Contributor"
+      + scope                            = "/subscriptions/af5fe770-088b-4ec6-bc25-94fc674d634f"
+      + skip_service_principal_aad_check = (known after apply)
+    }
+
   # module.entra_id.azuread_application.terraform will be created
   + resource "azuread_application" "terraform" {
       + app_role_ids                = (known after apply)
@@ -425,7 +438,7 @@ Terraform will perform the following actions:
         }
     }
 
-Plan: 26 to add, 0 to change, 0 to destroy.
+Plan: 27 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + hub_vnet_id                = (known after apply)

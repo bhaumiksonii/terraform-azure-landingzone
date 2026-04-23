@@ -37,3 +37,12 @@ module "landing_zone" {
   subscription_id    = local.effective_subscription_id
   tags               = local.common_tags
 }
+
+resource "azurerm_role_assignment" "platform_admins_contributor" {
+  scope                = "/subscriptions/${local.effective_subscription_id}"
+  role_definition_name = "Contributor"
+  principal_id         = module.entra_id.platform_admin_group_id
+  principal_type       = "Group"
+
+  depends_on = [module.entra_id]
+}
