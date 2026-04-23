@@ -29,11 +29,11 @@ module "entra_id" {
 module "landing_zone" {
   source = "./modules/landing-zone"
 
-  address_space       = var.hub_address_space
-  environment         = var.environment
-  location            = var.location
-  log_retention_days  = var.log_retention_days
-  name_prefix         = local.name_prefix
-  subscription_id     = local.effective_subscription_id
-  tags                = local.common_tags
+  address_space      = var.hub_address_space
+  environment        = var.environment
+  location           = var.location
+  log_retention_days = var.log_retention_days
+  name_prefix        = local.name_prefix
+  subscription_id    = local.effective_subscription_id
+  tags               = local.common_tags
 }

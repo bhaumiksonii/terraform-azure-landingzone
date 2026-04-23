@@ -19,9 +19,9 @@ resource "azapi_resource" "subscription_alias" {
 
   body = {
     properties = {
-      displayName        = var.subscription_alias
-      billingScope       = "/providers/Microsoft.Billing/billingAccounts/${var.billing_account_name}/enrollmentAccounts/${var.enrollment_account_name}"
-      workload           = var.environment == "prod" ? "Production" : "DevTest"
+      displayName  = var.subscription_alias
+      billingScope = "/providers/Microsoft.Billing/billingAccounts/${var.billing_account_name}/enrollmentAccounts/${var.enrollment_account_name}"
+      workload     = var.environment == "prod" ? "Production" : "DevTest"
       additionalProperties = {
         managementGroupId = var.management_group_id
       }
