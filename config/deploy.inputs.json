@@ -1,0 +1,12 @@
+{
+  "create_subscription": false,
+  "subscription_id": "af5fe770-088b-4ec6-bc25-94fc674d634f",
+  "tenant_id": "26fc57d4-e99c-4031-9d94-9a524653efad",
+  "environment": "dev",
+  "location": "australiaeast",
+  "hub_address_space": [
+    "10.10.0.0/16"
+  ],
+  "log_retention_days": 30,
+  "cost_centre": "ofbank-dev-platform"
+}
